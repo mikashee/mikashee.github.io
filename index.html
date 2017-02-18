@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Obtain the coordinates</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://api-maps.yandex.ru/1.1/index.xml?modules=regions" type="text/javascript"></script>
+</head>
+
+<body>
+	
+	<div id="ym"></div>
+	<input type="button" value="Obtain the coordinates" id="crd">
+	<div id="out"></div>
+	<style>
+		#ym{width:80%;height:60em;margin-bottom:1em;}
+		#crd{font:.9em/1.3 Arial; color:#fff;padding:.4em 1.2em;margin-bottom:1em;border-radius:.2em;border:1px solid #1a941a;background-color:#46cc46;background:linear-gradient(to top, #2abc2a, #7eeb7e);}
+		#crd:hover{border:1px solid #1ba11b;background-color:#4ad94a;background:linear-gradient(to top, #2cc92c, #86f786); cursor:pointer;}
+		#out{font:1.1em/1.4 Lucida Console,Courier New,Arial; width:80%; min-height:5em; box-sizing:border-box;padding:.2em .5em; border-radius:.2em;border:1px solid #ccc;}
+	</style>
+	<script src="http://api-maps.yandex.ru/1.1/index.xml?key=AFqtcU8BAAAAh3_PDgIA8NbW6k9nsZgZT_Fu2b9gvUyeSN0AAAAAAAAAAACN4V5w1fDuWwZOobvuG9nIh3iphA=="></script>
+	<script>
+		// —оздание обработчика дл€ событи€ window.onLoad
+		YMaps.jQuery(function(){
+			// —оздание экземпл€ра карты и его прив€зка к созданному контейнеру
+			var map=new YMaps.Map(YMaps.jQuery("#ym")[0]);
+			
+			// ”становка дл€ карты ее центра и масштаба
+			map.setCenter(new YMaps.GeoPoint(27.546758,53.904995),12,YMaps.MapType.MAP);
+			
+			map.addControl(new YMaps.TypeControl());
+			map.addControl(new YMaps.Zoom());
+			map.addControl(new YMaps.SearchControl());
+			
+			var style=new YMaps.Style();
+			style.polygonStyle=new YMaps.PolygonStyle();
+			style.polygonStyle.fill=true;style.polygonStyle.outline=true;
+			style.polygonStyle.strokeWidth=2;style.polygonStyle.strokeColor="ff0000ff";
+			style.polygonStyle.fillColor="ff000077";
+			
+			var polygon=[];
+			var cp=0;
+			YMaps.Events.observe(
+				map,map.Events.Click,function(){
+					alert("Now you can draw a polygon! To begin, click on the map area.");
+					polygon[cp]=new YMaps.Polygon();
+					polygon[cp].setStyle(style);
+					polygon[cp].name=cp;
+					map.addOverlay(polygon[cp]);
+					polygon[cp].setEditingOptions({drawing:true});
+					polygon[cp].startEditing();
+					cp++;
+				}
+			);
+			YMaps.jQuery("#crd").click(function(){
+				var pts=[];
+				for(var i=0;i<polygon.length;i++) {
+					var temp1=polygon[i].getPoints().toString().split(",");
+					var temp2=[];
+					for(var j=0;j<temp1.length/2;j++) {
+						temp2.push("["+ temp1[j*2] +","+ temp1[j*2+1] +"]");
+					}
+					pts.push("["+temp2.join(",")+"]");
+				}
+				//YMaps.jQuery("#out").html(pts.join("<br><br>")+"<br><br>Zoom:<br>"+map.getZoom()+"<br><br>Center:<br>"+map.getCenter());// с масштабом и координатами центра
+				YMaps.jQuery("#out").html(pts.join("<br><br>"));
+			});
+		});
+		</script>
+</body>
+
+</html>
