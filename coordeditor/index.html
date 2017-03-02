@@ -8,19 +8,21 @@
 
 <body>
 	
-	<input id="cordinputarea" type="text" placeholder="Сюда можно вставить массив координат в формате [[27.710227,53.932382],[27.695078,53.947575],...,[27.719626,53.955396]]"></input>
-	<input type="button" value="Display on map" id="cordinputbtn"> <br>
+	<input id="cordinputarea" class="cordinputarea" type="text" placeholder="Сюда можно вставить массив координат в формате [[27.710227,53.932382],[27.695078,53.947575],...,[27.719626,53.955396]]"></input>
+	<input type="button" value="Display on map" id="cordinputbtn" class="cordinputbtn"> <br>
+	<input id="cordinputarea2" class="cordinputarea" type="text" placeholder="Сюда можно вставить массив координат в формате 27.710227,53.932382;27.695078,53.947575;...;27.719626,53.955396"></input>
+	<input type="button" value="Display on map" id="cordinputbtn2" class="cordinputbtn"> <br>
 	<div id="ym"></div>
 	<input type="button" value="Obtain the coordinates" id="crd">
 	<div id="out"></div>
 	<style>
 		#ym{width:80%;height:55em;margin-bottom:1em;}
-		#cordinputbtn{font:.9em/1.3 Arial; color:#fff;padding:.4em 1.2em;margin-bottom:1em;border-radius:.2em;border:1px solid #1a941a;background-color:#46cc46;background:linear-gradient(to top, #2abc2a, #7eeb7e);}
-		#cordinputbtn:hover{border:1px solid #1ba11b;background-color:#4ad94a;background:linear-gradient(to top, #2cc92c, #86f786); cursor:pointer;}
+		.cordinputbtn{font:.9em/1.3 Arial; color:#fff;padding:.4em 1.2em;margin-bottom:1em;border-radius:.2em;border:1px solid #1a941a;background-color:#46cc46;background:linear-gradient(to top, #2abc2a, #7eeb7e);}
+		.cordinputbtn:hover{border:1px solid #1ba11b;background-color:#4ad94a;background:linear-gradient(to top, #2cc92c, #86f786); cursor:pointer;}
 		#crd{font:.9em/1.3 Arial; color:#fff;padding:.4em 1.2em;margin-bottom:1em;border-radius:.2em;border:1px solid #1a941a;background-color:#46cc46;background:linear-gradient(to top, #2abc2a, #7eeb7e);}
 		#crd:hover{border:1px solid #1ba11b;background-color:#4ad94a;background:linear-gradient(to top, #2cc92c, #86f786); cursor:pointer;}
 		#out{font:0.8em/1.4 Lucida Console,Courier New,Arial; width:80%; min-height:5em; box-sizing:border-box;padding:.2em .5em; border-radius:.2em;border:1px solid #ccc;}
-		#cordinputarea{font:0.8em/1.4 Lucida Console,Courier New,Arial; width:70%; min-height:2em; box-sizing:border-box;padding:.2em .5em; border-radius:.2em;border:1px solid #ccc;}
+		.cordinputarea{font:0.8em/1.4 Lucida Console,Courier New,Arial; width:70%; min-height:2em; box-sizing:border-box;padding:.2em .5em; border-radius:.2em;border:1px solid #ccc;}
 	</style>
 	<script src="http://api-maps.yandex.ru/1.1/index.xml?key=AFqtcU8BAAAAh3_PDgIA8NbW6k9nsZgZT_Fu2b9gvUyeSN0AAAAAAAAAAACN4V5w1fDuWwZOobvuG9nIh3iphA=="></script>
 	<script>
@@ -93,6 +95,29 @@
 			YMaps.jQuery("#cordinputbtn").click(function(){
 				var w = document.getElementById("cordinputarea").value;
 				var arr = w.replace( /]|\[/g,"").split(',');
+				polygon[cp]=new YMaps.Polygon([
+				], {
+						style: "polygon#Example",
+						hasHint: 1,
+						hasBalloon: 1
+					});
+			
+
+				for (var i=0,len=arr.length;i+1<len;i=i+2) {
+					polygon[cp].addPoint(new YMaps.GeoPoint(parseFloat(arr[i]),parseFloat(arr[i+1])))
+				}
+			
+				polygon[cp].setStyle(style);
+				polygon[cp].name=cp;
+				map.addOverlay(polygon[cp]);
+				polygon[cp].setEditingOptions({drawing:true},{editing:true});
+				polygon[cp].startEditing();
+				cp++
+			});
+			
+			YMaps.jQuery("#cordinputbtn2").click(function(){
+				var w = document.getElementById("cordinputarea2").value;
+				var arr = w.replace( /;/g,",").split(',');
 				polygon[cp]=new YMaps.Polygon([
 				], {
 						style: "polygon#Example",
