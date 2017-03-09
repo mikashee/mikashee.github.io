@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Displaying districts on the map</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://api-maps.yandex.ru/1.1/index.xml?modules=regions" type="text/javascript"></script>	
+</head>
+
+<body>
+<table><tr>
+		
+<td><div id="ym"></div></td>
+<td><div class="menu">
+		<h3><a class="сity" id="minsk" href=#>МИНСК<a><br></h3>
+		<p>Направления:</p>
+		<a class="napravlenie" id="tobrest" href=#>Брестское</a><br>
+		<a class="napravlenie" id="tologoysk" href=#>Логойское</a><br>
+		<a class="napravlenie" id="tomogilev" href=#>Могилевское</a><br>
+		<a class="napravlenie" id="tomolodechno" href=#>Молодечненское</a><br>
+		<a class="napravlenie" id="tomoscow" href=#>Московское</a><br>
+		<a class="napravlenie" id="tomiadel" href=#>Мядельское</a><br>
+		<a class="napravlenie" id="topuhovichi" href=#>Пуховичское</a><br>
+		<a class="napravlenie" id="torackow" href=#>Раковское</a><br>
+		<a class="napravlenie" id="toslutsk" href=#>Слуцкое</a><br>
+	</div></td>                         
+	</tr></table>
+	<style>
+		#ym{width:80em;height:60em;margin-bottom:1em;}
+		a {text-decoration: none;border-bottom: dashed 1px; color: green;}
+        a.active {color: #000;}
+		td {vertical-align:top; padding:2px;}
+
+	</style>
+	<script src="http://api-maps.yandex.ru/1.1/index.xml?key=AFqtcU8BAAAAh3_PDgIA8NbW6k9nsZgZT_Fu2b9gvUyeSN0AAAAAAAAAAACN4V5w1fDuWwZOobvuG9nIh3iphA=="></script>
+	<script>
+		// Создает обработчик события window.onLoad
+		YMaps.jQuery(function(){
+		
+		
+			/**//**/
+			// Создает экземпляр карты и привязывает его к созданному контейнеру
+			var map=new YMaps.Map(YMaps.jQuery("#ym")[0]);
+			
+			// Устанавливает начальные параметры отображения карты: центр карты и коэффициент масштабирования		
+			map.setCenter(new YMaps.GeoPoint(27.546758,53.904995),8,YMaps.MapType.MAP);
+			
+			map.addControl(new YMaps.TypeControl());
+			map.addControl(new YMaps.Zoom());
+			map.addControl(new YMaps.SearchControl());
+			map.enableScrollZoom();
+			
+			var style=new YMaps.Style();
+			style.polygonStyle=new YMaps.PolygonStyle();
+			style.polygonStyle.fill=true;style.polygonStyle.outline=true;
+			style.polygonStyle.strokeWidth=1;style.polygonStyle.strokeColor="00000066";
+			style.polygonStyle.fillColor="FFFF0066";//ff000077
+			
+			var styleTo=new YMaps.Style();
+			styleTo.polygonStyle=new YMaps.PolygonStyle();
+			styleTo.polygonStyle.fill=true;style.polygonStyle.outline=true;
+			styleTo.polygonStyle.strokeWidth=1;style.polygonStyle.strokeColor="f0000077";
+			styleTo.polygonStyle.fillColor="FF000077";//ff000077
+							
+			var polygonTo=[];	
+			<!--****************************************-->						
+			<!--0) TO BREST-->						
+			<!--****************************************-->					
+			polygonTo[0]=new YMaps.Polygon([
+						new YMaps.GeoPoint(26.40315,52.945799 ),
+						new YMaps.GeoPoint(26.45798,52.99947  ),
+						new YMaps.GeoPoint(26.455405,53.042013),
+						new YMaps.GeoPoint(26.514628,53.050599),
+						new YMaps.GeoPoint(26.4724,53.116542  ),
+						new YMaps.GeoPoint(26.379016,53.129347),
+						new YMaps.GeoPoint(26.372836,53.148341),
+						new YMaps.GeoPoint(26.354983,53.159485),
+						new YMaps.GeoPoint(26.282886,53.188365),
+						new YMaps.GeoPoint(26.268466,53.209805),
+						new YMaps.GeoPoint(26.343997,53.260478),
+						new YMaps.GeoPoint(26.403048,53.316847),
+						new YMaps.GeoPoint(26.34949,53.363696 ),
+						new YMaps.GeoPoint(26.526645,53.390795),
+						new YMaps.GeoPoint(26.582263,53.402697),
+						new YMaps.GeoPoint(26.556857,53.42608 ),
+						new YMaps.GeoPoint(26.493686,53.510481),
+						new YMaps.GeoPoint(26.544497,53.543213),
+						new YMaps.GeoPoint(26.440127,53.624115),
+						new YMaps.GeoPoint(26.35979,53.667362 ),
+						new YMaps.GeoPoint(26.298678,53.722783),
+						new YMaps.GeoPoint(26.558917,53.718711),
+						new YMaps.GeoPoint(26.580546,53.736729),
+						new YMaps.GeoPoint(26.698821,53.71367 ),
+						new YMaps.GeoPoint(26.718562,53.721434),
+						new YMaps.GeoPoint(26.726802,53.738536),
+						new YMaps.GeoPoint(26.78448,53.833889 ),
+						new YMaps.GeoPoint(26.917912,53.831722),
+						new YMaps.GeoPoint(27.034934,53.840691),
+						new YMaps.GeoPoint(27.044719,53.854801),
+						new YMaps.GeoPoint(27.089573,53.837713),
+						new YMaps.GeoPoint(27.177327,53.854395),
+						new YMaps.GeoPoint(27.201274,53.844397),
+						new YMaps.GeoPoint(27.247193,53.829878),
+						new YMaps.GeoPoint(27.293799,53.838103),
+						new YMaps.GeoPoint(27.330277,53.848813),
+						new YMaps.GeoPoint(27.353709,53.85848 ),
+						new YMaps.GeoPoint(27.373193,53.87304 ),
+						new YMaps.GeoPoint(27.41754,53.879049 ),
+						new YMaps.GeoPoint(27.433516,53.845852),
+						new YMaps.GeoPoint(27.448817,53.836583),
+						new YMaps.GeoPoint(27.477703,53.833881),
+						new YMaps.GeoPoint(27.47981,53.805988 ),
+						new YMaps.GeoPoint(27.470997,53.7951  ),
+						new YMaps.GeoPoint(27.448767,53.77703 ),
+						new YMaps.GeoPoint(27.434004,53.774031),
+						new YMaps.GeoPoint(27.431772,53.749314),
+						new YMaps.GeoPoint(27.417782,53.738366),
+						new YMaps.GeoPoint(27.363923,53.703647),
+						new YMaps.GeoPoint(27.360661,53.691168),
+						new YMaps.GeoPoint(27.365897,53.68271 ),
+						new YMaps.GeoPoint(27.319463,53.657379),
+						new YMaps.GeoPoint(27.286418,53.638306),
+						new YMaps.GeoPoint(27.26127,53.618663 ),
+						new YMaps.GeoPoint(27.311223,53.505783),
+						new YMaps.GeoPoint(27.278092,53.472561),
+						new YMaps.GeoPoint(27.262385,53.452226),
+						new YMaps.GeoPoint(27.238567,53.441184),
+						new YMaps.GeoPoint(27.228032,53.429408),
+						new YMaps.GeoPoint(27.173207,53.422859),
+						new YMaps.GeoPoint(27.182692,53.398525),
+						new YMaps.GeoPoint(27.097547,53.252895),
+						new YMaps.GeoPoint(27.099092,53.230548),
+						new YMaps.GeoPoint(27.048452,53.191904),
+						new YMaps.GeoPoint(26.915586,53.140221),
+						new YMaps.GeoPoint(26.909063,53.110999),
+						new YMaps.GeoPoint(26.802462,53.065526),
+						new YMaps.GeoPoint(26.728647,52.972985),
+				], {style: "polygon#Example",hasHint: 1,hasBalloon: 1});
+			polygonTo[0].setStyle(styleTo);
+			polygonTo[0].name="Брестское";	
+
+			YMaps.jQuery("#tobrest")
+					.bind("click", function () {
+					var link = YMaps.jQuery(this);
+					if (link.hasClass("active")) {
+						map.removeOverlay(polygonTo[0]);
+					} else {
+						map.addOverlay(polygonTo[0]);
+					}
+					link.toggleClass("active");
+					return false;
+				});	
+			
+		
+			<!--****************************************-->						
+			<!--1)tologoysk-->						
+			<!--****************************************-->						
+			polygonTo[1]=new YMaps.Polygon([
+						new YMaps.GeoPoint(27.707318,54.184998),new YMaps.GeoPoint(27.606937,54.220541),new YMaps.GeoPoint(27.644915,54.24017),new YMaps.GeoPoint(27.634354,54.275783),new YMaps.GeoPoint(27.575629,54.367038),new YMaps.GeoPoint(27.495284,54.45612),new YMaps.GeoPoint(27.47193,54.535826),new YMaps.GeoPoint(27.534055,54.673683),new YMaps.GeoPoint(27.693142,54.742617),new YMaps.GeoPoint(27.759361,54.619628),new YMaps.GeoPoint(27.865705,54.646615),new YMaps.GeoPoint(27.915143,54.607273),new YMaps.GeoPoint(28.004407,54.597806),new YMaps.GeoPoint(28.212209,54.678293),new YMaps.GeoPoint(28.404121,54.550497),new YMaps.GeoPoint(28.358888,54.430739),new YMaps.GeoPoint(28.279409,54.351724),new YMaps.GeoPoint(28.284559,54.241926),new YMaps.GeoPoint(28.057966,54.095778),new YMaps.GeoPoint(27.902424,54.09826),new YMaps.GeoPoint(27.891079,54.088633),new YMaps.GeoPoint(27.886926,54.081284),new YMaps.GeoPoint(27.854933,54.062745),new YMaps.GeoPoint(27.803649,54.043226),new YMaps.GeoPoint(27.732931,53.987179),new YMaps.GeoPoint(27.693102,53.960204),new YMaps.GeoPoint(27.661044,53.950249),new YMaps.GeoPoint(27.636797,53.960949),new YMaps.GeoPoint(27.64718,53.96622),new YMaps.GeoPoint(27.586927,53.972091),new YMaps.GeoPoint(27.619113,54.001732),new YMaps.GeoPoint(27.625508,54.032869),new YMaps.GeoPoint(27.631795,54.057822),new YMaps.GeoPoint(27.600787,54.112357),new YMaps.GeoPoint(27.616084,54.140538),
+				], {style: "polygon#Example",hasHint: 1,hasBalloon: 1});
+			polygonTo[1].setStyle(styleTo);
+			polygonTo[1].name="Логойское";	
+
+			YMaps.jQuery("#tologoysk")
+					.bind("click", function () {
+					var link = YMaps.jQuery(this);
+					if (link.hasClass("active")) {
+						map.removeOverlay(polygonTo[1]);
+					} else {
+						map.addOverlay(polygonTo[1]);
+					}
+					link.toggleClass("active");
+					return false;
+				});	
+				
+	
+			<!--****************************************-->						
+			<!--2)Минск-->						
+			<!--****************************************-->						
+			polygonTo[2]=new YMaps.Polygon([
+						new YMaps.GeoPoint(27.448825,53.836561),new YMaps.GeoPoint(27.433612,53.846003),new YMaps.GeoPoint(27.417658,53.878981),new YMaps.GeoPoint(27.405481,53.903976),new YMaps.GeoPoint(27.4199,53.932096),new YMaps.GeoPoint(27.465305,53.966929),new YMaps.GeoPoint(27.586884,53.971964),new YMaps.GeoPoint(27.647266,53.96622),new YMaps.GeoPoint(27.636837,53.960957),new YMaps.GeoPoint(27.660806,53.950276),new YMaps.GeoPoint(27.693131,53.960172),new YMaps.GeoPoint(27.723741,53.959843),new YMaps.GeoPoint(27.747221,53.96856),new YMaps.GeoPoint(27.750054,53.936514),new YMaps.GeoPoint(27.690377,53.920932),new YMaps.GeoPoint(27.699365,53.876749),new YMaps.GeoPoint(27.684173,53.859552),new YMaps.GeoPoint(27.727051,53.83835),new YMaps.GeoPoint(27.751427,53.862912),new YMaps.GeoPoint(27.790394,53.866261),new YMaps.GeoPoint(27.816315,53.853881),new YMaps.GeoPoint(27.782069,53.824184),new YMaps.GeoPoint(27.716065,53.827383),new YMaps.GeoPoint(27.713404,53.81715),new YMaps.GeoPoint(27.690058,53.804069),new YMaps.GeoPoint(27.669287,53.808743),new YMaps.GeoPoint(27.65873,53.825301),new YMaps.GeoPoint(27.682395,53.833267),new YMaps.GeoPoint(27.667663,53.844914),new YMaps.GeoPoint(27.660312,53.837932),new YMaps.GeoPoint(27.644347,53.832804),new YMaps.GeoPoint(27.564654,53.832094),new YMaps.GeoPoint(27.592168,53.824869),new YMaps.GeoPoint(27.60058,53.800995),new YMaps.GeoPoint(27.596546,53.793932),new YMaps.GeoPoint(27.588649,53.792967),new YMaps.GeoPoint(27.563415,53.831572),new YMaps.GeoPoint(27.48187,53.840267),new YMaps.GeoPoint(27.477498,53.833806),
+
+				], {style: "polygon#Example",hasHint: 1,hasBalloon: 1});
+			polygonTo[2].setStyle(style);
+			polygonTo[2].name="Минск";	
+
+			YMaps.jQuery("#minsk")
+					.bind("click", function () {
+					var link = YMaps.jQuery(this);
+					if (link.hasClass("active")) {
+						map.removeOverlay(polygonTo[2]);
+					} else {
+						map.addOverlay(polygonTo[2]);
+					}
+					link.toggleClass("active");
+					return false;
+				});	
+				
+			
+			<!--****************************************-->						
+			<!--3)tomogilev-->						
+			<!--****************************************-->						
+			polygonTo[3]=new YMaps.Polygon([
+						new YMaps.GeoPoint(28.543596,53.542198),new YMaps.GeoPoint(28.502397,53.54524),new YMaps.GeoPoint(28.342065,53.634071),new YMaps.GeoPoint(27.962693,53.728797),new YMaps.GeoPoint(27.819957,53.76141),new YMaps.GeoPoint(27.769017,53.760926),new YMaps.GeoPoint(27.76715,53.787174),new YMaps.GeoPoint(27.741583,53.79394),new YMaps.GeoPoint(27.666143,53.787768),new YMaps.GeoPoint(27.644903,53.800944),new YMaps.GeoPoint(27.600304,53.800961),new YMaps.GeoPoint(27.592158,53.825042),new YMaps.GeoPoint(27.564739,53.832102),new YMaps.GeoPoint(27.644609,53.832764),new YMaps.GeoPoint(27.660575,53.838159),new YMaps.GeoPoint(27.667615,53.844974),new YMaps.GeoPoint(27.682552,53.833312),new YMaps.GeoPoint(27.658693,53.825304),new YMaps.GeoPoint(27.669688,53.808293),new YMaps.GeoPoint(27.690353,53.803855),new YMaps.GeoPoint(27.71357,53.817215),new YMaps.GeoPoint(27.715909,53.827041),new YMaps.GeoPoint(27.782449,53.824274),new YMaps.GeoPoint(27.816095,53.853844),new YMaps.GeoPoint(27.790002,53.865945),new YMaps.GeoPoint(27.962179,53.939085),new YMaps.GeoPoint(28.052472,53.862571),new YMaps.GeoPoint(28.097705,53.879241),new YMaps.GeoPoint(28.178644,53.857155),new YMaps.GeoPoint(28.377256,53.882784),new YMaps.GeoPoint(28.707532,53.922573),new YMaps.GeoPoint(28.879194,53.914162),new YMaps.GeoPoint(29.192304,53.934629),new YMaps.GeoPoint(29.380445,53.967435),new YMaps.GeoPoint(29.433172,53.914089),new YMaps.GeoPoint(29.433859,53.815466),new YMaps.GeoPoint(29.487074,53.809777),new YMaps.GeoPoint(29.493425,53.793111),new YMaps.GeoPoint(29.477718,53.782539),new YMaps.GeoPoint(29.39296,53.787825),new YMaps.GeoPoint(29.378241,53.771965),new YMaps.GeoPoint(29.342449,53.743558),new YMaps.GeoPoint(29.245975,53.673488),new YMaps.GeoPoint(29.181431,53.65167),new YMaps.GeoPoint(29.127186,53.683476),new YMaps.GeoPoint(29.103497,53.686534),new YMaps.GeoPoint(29.10281,53.642898),new YMaps.GeoPoint(29.068821,53.621778),new YMaps.GeoPoint(29.069508,53.603608),new YMaps.GeoPoint(29.087189,53.589107),new YMaps.GeoPoint(29.075859,53.578995),new YMaps.GeoPoint(28.99432,53.592376),new YMaps.GeoPoint(28.965481,53.578586),new YMaps.GeoPoint(28.979557,53.501282),new YMaps.GeoPoint(28.929346,53.513732),new YMaps.GeoPoint(28.913811,53.531907),new YMaps.GeoPoint(28.825606,53.560362),new YMaps.GeoPoint(28.583191,53.554299),
+
+				], {style: "polygon#Example",hasHint: 1,hasBalloon: 1});
+			polygonTo[3].setStyle(styleTo);
+			polygonTo[3].name="Могилевское";	
+
+			YMaps.jQuery("#tomogilev")
+					.bind("click", function () {
+					var link = YMaps.jQuery(this);
+					if (link.hasClass("active")) {
+						map.removeOverlay(polygonTo[3]);
+					} else {
+						map.addOverlay(polygonTo[3]);
+					}
+					link.toggleClass("active");
+					return false;
+				});	
+				
+			
+			<!--****************************************-->						
+			<!--4)tomolodechno-->						
+			<!--****************************************-->						
+			polygonTo[4]=new YMaps.Polygon([
+						new YMaps.GeoPoint(26.496534,54.303112),new YMaps.GeoPoint(26.517305,54.360547),new YMaps.GeoPoint(26.555585,54.395821),new YMaps.GeoPoint(26.645965,54.444272),new YMaps.GeoPoint(26.656007,54.489869),new YMaps.GeoPoint(26.618156,54.533692),new YMaps.GeoPoint(26.669225,54.617137),new YMaps.GeoPoint(26.569404,54.685371),new YMaps.GeoPoint(26.53563,54.719644),new YMaps.GeoPoint(26.428105,54.833201),new YMaps.GeoPoint(26.337709,54.818707),new YMaps.GeoPoint(26.347615,54.872485),new YMaps.GeoPoint(26.280298,54.942061),new YMaps.GeoPoint(26.350323,54.995165),new YMaps.GeoPoint(26.419843,54.965687),new YMaps.GeoPoint(26.527471,54.938165),new YMaps.GeoPoint(26.796305,54.779375),new YMaps.GeoPoint(26.968431,54.638152),new YMaps.GeoPoint(27.006625,54.568542),new YMaps.GeoPoint(27.021474,54.504507),new YMaps.GeoPoint(26.993064,54.371498),new YMaps.GeoPoint(27.088036,54.306036),new YMaps.GeoPoint(27.183244,54.298575),new YMaps.GeoPoint(27.255792,54.253236),new YMaps.GeoPoint(27.26459,54.194455),new YMaps.GeoPoint(27.32701,54.155865),new YMaps.GeoPoint(27.390632,54.124197),new YMaps.GeoPoint(27.425951,54.063667),new YMaps.GeoPoint(27.442248,54.067482),new YMaps.GeoPoint(27.453095,54.067813),new YMaps.GeoPoint(27.483817,53.999582),new YMaps.GeoPoint(27.47572,53.992136),new YMaps.GeoPoint(27.465305,53.966954),new YMaps.GeoPoint(27.419729,53.932096),new YMaps.GeoPoint(27.391839,53.931219),new YMaps.GeoPoint(27.364717,53.934562),new YMaps.GeoPoint(27.332273,53.921797),new YMaps.GeoPoint(27.290903,53.927369),new YMaps.GeoPoint(27.26657,53.934435),new YMaps.GeoPoint(27.270046,53.951525),new YMaps.GeoPoint(27.226186,53.960789),new YMaps.GeoPoint(27.197175,53.956942),new YMaps.GeoPoint(27.16353,53.979209),new YMaps.GeoPoint(27.116838,53.977438),new YMaps.GeoPoint(27.095724,53.986797),new YMaps.GeoPoint(27.085081,54.029367),new YMaps.GeoPoint(26.968608,54.045938),new YMaps.GeoPoint(26.950026,54.080252),new YMaps.GeoPoint(26.905523,54.121597),new YMaps.GeoPoint(26.869045,54.143537),new YMaps.GeoPoint(26.787162,54.177109),new YMaps.GeoPoint(26.648543,54.218736),new YMaps.GeoPoint(26.534773,54.296205),
+				], {style: "polygon#Example",hasHint: 1,hasBalloon: 1});
+			polygonTo[4].setStyle(styleTo);
+			polygonTo[4].name="Молодечненское";	
+
+			YMaps.jQuery("#tomolodechno")
+					.bind("click", function () {
+					var link = YMaps.jQuery(this);
+					if (link.hasClass("active")) {
+						map.removeOverlay(polygonTo[4]);
+					} else {
+						map.addOverlay(polygonTo[4]);
+					}
+					link.toggleClass("active");
+					return false;
+				});	
+				
+			<!--****************************************-->						
+			<!--5)tomoscow-->						
+			<!--****************************************-->						
+			polygonTo[5]=new YMaps.Polygon([
+						new YMaps.GeoPoint(29.378385,53.967435),new YMaps.GeoPoint(29.192132,53.934451),new YMaps.GeoPoint(28.879537,53.914821),new YMaps.GeoPoint(28.707532,53.922573),new YMaps.GeoPoint(28.377256,53.882936),new YMaps.GeoPoint(28.178987,53.85732),new YMaps.GeoPoint(28.098478,53.878981),new YMaps.GeoPoint(28.052816,53.862597),new YMaps.GeoPoint(27.962179,53.939085),new YMaps.GeoPoint(27.790002,53.866097),new YMaps.GeoPoint(27.751754,53.863015),new YMaps.GeoPoint(27.727238,53.838008),new YMaps.GeoPoint(27.683701,53.859451),new YMaps.GeoPoint(27.699622,53.876343),new YMaps.GeoPoint(27.690267,53.921053),new YMaps.GeoPoint(27.750048,53.936503),new YMaps.GeoPoint(27.747258,53.968599),new YMaps.GeoPoint(27.723827,53.959818),new YMaps.GeoPoint(27.693099,53.960198),new YMaps.GeoPoint(27.732753,53.987268),new YMaps.GeoPoint(27.803735,54.043175),new YMaps.GeoPoint(27.855405,54.062872),new YMaps.GeoPoint(27.887162,54.081297),new YMaps.GeoPoint(27.890982,54.088525),new YMaps.GeoPoint(27.902526,54.098326),new YMaps.GeoPoint(28.057966,54.095778),new YMaps.GeoPoint(28.28546,54.241826),new YMaps.GeoPoint(28.279495,54.352075),new YMaps.GeoPoint(28.358545,54.430614),new YMaps.GeoPoint(28.404593,54.550534),new YMaps.GeoPoint(28.457486,54.661147),new YMaps.GeoPoint(28.646668,54.670002),new YMaps.GeoPoint(28.679117,54.617287),new YMaps.GeoPoint(28.668994,54.582852),new YMaps.GeoPoint(28.780317,54.570886),new YMaps.GeoPoint(28.844803,54.566135),new YMaps.GeoPoint(28.879822,54.579299),new YMaps.GeoPoint(28.867805,54.608605),new YMaps.GeoPoint(28.908318,54.618369),new YMaps.GeoPoint(29.015778,54.587475),new YMaps.GeoPoint(29.03466,54.622752),new YMaps.GeoPoint(29.100922,54.643067),new YMaps.GeoPoint(29.152763,54.630521),new YMaps.GeoPoint(29.215591,54.64028),new YMaps.GeoPoint(29.230011,54.624346),new YMaps.GeoPoint(29.222629,54.581593),new YMaps.GeoPoint(29.285114,54.567431),new YMaps.GeoPoint(29.328545,54.58927),new YMaps.GeoPoint(29.351032,54.580994),new YMaps.GeoPoint(29.405106,54.584883),new YMaps.GeoPoint(29.448536,54.620959),new YMaps.GeoPoint(29.461925,54.619365),new YMaps.GeoPoint(29.468449,54.611993),new YMaps.GeoPoint(29.489391,54.602726),new YMaps.GeoPoint(29.494455,54.590516),new YMaps.GeoPoint(29.457205,54.576108),new YMaps.GeoPoint(29.453857,54.566334),new YMaps.GeoPoint(29.461496,54.555959),new YMaps.GeoPoint(29.435747,54.519026),new YMaps.GeoPoint(29.451197,54.505542),new YMaps.GeoPoint(29.398497,54.462645),new YMaps.GeoPoint(29.414633,54.461045),new YMaps.GeoPoint(29.418409,54.448292),new YMaps.GeoPoint(29.437292,54.437136),new YMaps.GeoPoint(29.420469,54.431232),new YMaps.GeoPoint(29.419783,54.409509),new YMaps.GeoPoint(29.423559,54.4028),new YMaps.GeoPoint(29.439695,54.401598),new YMaps.GeoPoint(29.4433,54.391682),new YMaps.GeoPoint(29.402445,54.380761),new YMaps.GeoPoint(29.360216,54.345574),new YMaps.GeoPoint(29.375494,54.323705),new YMaps.GeoPoint(29.393003,54.314172),new YMaps.GeoPoint(29.372061,54.268881),new YMaps.GeoPoint(29.336184,54.248781),new YMaps.GeoPoint(29.366911,54.232995),new YMaps.GeoPoint(29.390943,54.242347),new YMaps.GeoPoint(29.402788,54.229877),new YMaps.GeoPoint(29.431799,54.22857),new YMaps.GeoPoint(29.435575,54.221529),new YMaps.GeoPoint(29.459436,54.220825),new YMaps.GeoPoint(29.450682,54.200198),new YMaps.GeoPoint(29.443558,54.164705),new YMaps.GeoPoint(29.430469,54.132281),new YMaps.GeoPoint(29.452441,54.104448),new YMaps.GeoPoint(29.418796,54.051149),new YMaps.GeoPoint(29.432528,54.041855),
+				], {style: "polygon#Example",hasHint: 1,hasBalloon: 1});
+			polygonTo[5].setStyle(styleTo);
+			polygonTo[5].name="Московское";	
+
+			YMaps.jQuery("#tomoscow")
+					.bind("click", function () {
+					var link = YMaps.jQuery(this);
+					if (link.hasClass("active")) {
+						map.removeOverlay(polygonTo[5]);
+					} else {
+						map.addOverlay(polygonTo[5]);
+					}
+					link.toggleClass("active");
+					return false;
+				});	
+				
+				
+			<!--****************************************-->						
+			<!--6)tomiadel-->						
+			<!--****************************************-->						
+			polygonTo[6]=new YMaps.Polygon([
+						new YMaps.GeoPoint(27.284459,54.935122),new YMaps.GeoPoint(27.123784,54.977205),new YMaps.GeoPoint(26.527776,54.938482),new YMaps.GeoPoint(26.796254,54.779841),new YMaps.GeoPoint(26.968602,54.638102),new YMaps.GeoPoint(27.006207,54.569333),new YMaps.GeoPoint(27.022526,54.504443),new YMaps.GeoPoint(26.993646,54.370456),new YMaps.GeoPoint(27.088383,54.307312),new YMaps.GeoPoint(27.18312,54.298728),new YMaps.GeoPoint(27.255824,54.253317),new YMaps.GeoPoint(27.2657,54.193866),new YMaps.GeoPoint(27.328316,54.155847),new YMaps.GeoPoint(27.390246,54.124247),new YMaps.GeoPoint(27.425994,54.063678),new YMaps.GeoPoint(27.442281,54.067585),new YMaps.GeoPoint(27.45316,54.067806),new YMaps.GeoPoint(27.483844,53.999532),new YMaps.GeoPoint(27.475862,53.992528),new YMaps.GeoPoint(27.465262,53.966928),new YMaps.GeoPoint(27.586927,53.972039),new YMaps.GeoPoint(27.619027,54.001631),new YMaps.GeoPoint(27.625722,54.032919),new YMaps.GeoPoint(27.631902,54.057872),new YMaps.GeoPoint(27.600552,54.111994),new YMaps.GeoPoint(27.616533,54.140333),new YMaps.GeoPoint(27.707873,54.184966),new YMaps.GeoPoint(27.606282,54.220202),new YMaps.GeoPoint(27.644862,54.240367),new YMaps.GeoPoint(27.634112,54.27587),new YMaps.GeoPoint(27.575983,54.366711),new YMaps.GeoPoint(27.495431,54.456276),new YMaps.GeoPoint(27.471656,54.535513),new YMaps.GeoPoint(27.534034,54.673459),new YMaps.GeoPoint(27.693915,54.742666),new YMaps.GeoPoint(27.533025,54.772101),
+
+				], {style: "polygon#Example",hasHint: 1,hasBalloon: 1});
+			polygonTo[6].setStyle(styleTo);
+			polygonTo[6].name="Мядельское";	
+
+			YMaps.jQuery("#tomiadel")
+					.bind("click", function () {
+					var link = YMaps.jQuery(this);
+					if (link.hasClass("active")) {
+						map.removeOverlay(polygonTo[6]);
+					} else {
+						map.addOverlay(polygonTo[6]);
+					}
+					link.toggleClass("active");
+					return false;
+				});	
+				
+				
+			<!--****************************************-->						
+			<!--7)topuhovichi-->						
+			<!--****************************************-->						
+			polygonTo[7]=new YMaps.Polygon([
+						new YMaps.GeoPoint(27.805908,53.210048),new YMaps.GeoPoint(27.708755,53.354906),new YMaps.GeoPoint(27.770217,53.424693),new YMaps.GeoPoint(27.70362,53.475525),new YMaps.GeoPoint(27.70912,53.532025),new YMaps.GeoPoint(27.692327,53.611747),new YMaps.GeoPoint(27.681083,53.648531),new YMaps.GeoPoint(27.667093,53.677129),new YMaps.GeoPoint(27.730436,53.736711),new YMaps.GeoPoint(27.769059,53.760876),new YMaps.GeoPoint(27.820558,53.761283),new YMaps.GeoPoint(27.962865,53.728779),new YMaps.GeoPoint(28.340821,53.633857),new YMaps.GeoPoint(28.503169,53.544855),new YMaps.GeoPoint(28.54454,53.542538),new YMaps.GeoPoint(28.563021,53.534409),new YMaps.GeoPoint(28.507918,53.508803),new YMaps.GeoPoint(28.403376,53.481165),new YMaps.GeoPoint(28.398054,53.398963),new YMaps.GeoPoint(28.357714,53.350407),new YMaps.GeoPoint(28.430498,53.320198),new YMaps.GeoPoint(28.428438,53.277726),new YMaps.GeoPoint(28.32115,53.257143),new YMaps.GeoPoint(28.165968,53.261672),new YMaps.GeoPoint(28.146742,53.280195),new YMaps.GeoPoint(28.073957,53.271964),new YMaps.GeoPoint(28.073271,53.257143),new YMaps.GeoPoint(28.113783,53.23861),new YMaps.GeoPoint(28.10314,53.213886),new YMaps.GeoPoint(28.526543,53.084712),new YMaps.GeoPoint(28.532036,53.01313),new YMaps.GeoPoint(28.586281,52.969626),new YMaps.GeoPoint(28.451012,52.926907),new YMaps.GeoPoint(28.481911,52.884147),new YMaps.GeoPoint(28.412559,52.773103),new YMaps.GeoPoint(28.255318,52.845917),new YMaps.GeoPoint(28.193005,53.043682),new YMaps.GeoPoint(27.950447,53.16381),
+				], {style: "polygon#Example",hasHint: 1,hasBalloon: 1});
+			polygonTo[7].setStyle(styleTo);
+			polygonTo[7].name="Пуховичское";	
+
+			YMaps.jQuery("#topuhovichi")
+					.bind("click", function () {
+					var link = YMaps.jQuery(this);
+					if (link.hasClass("active")) {
+						map.removeOverlay(polygonTo[7]);
+					} else {
+						map.addOverlay(polygonTo[7]);
+					}
+					link.toggleClass("active");
+					return false;
+				});	
+				
+				
+			<!--****************************************-->						
+			<!--8)torackow-->						
+			<!--****************************************-->						
+			polygonTo[8]=new YMaps.Polygon([
+						new YMaps.GeoPoint(26.44805,54.301018),new YMaps.GeoPoint(26.496727,54.303459),new YMaps.GeoPoint(26.535447,54.296261),new YMaps.GeoPoint(26.648534,54.218888),new YMaps.GeoPoint(26.787819,54.176924),new YMaps.GeoPoint(26.868905,54.143268),new YMaps.GeoPoint(26.905702,54.121484),new YMaps.GeoPoint(26.949875,54.080399),new YMaps.GeoPoint(26.968678,54.045955),new YMaps.GeoPoint(27.085246,54.029365),new YMaps.GeoPoint(27.095679,53.986832),new YMaps.GeoPoint(27.116609,53.9774),new YMaps.GeoPoint(27.163594,53.979135),new YMaps.GeoPoint(27.196794,53.956896),new YMaps.GeoPoint(27.226046,53.960772),new YMaps.GeoPoint(27.26989,53.951486),new YMaps.GeoPoint(27.266722,53.934479),new YMaps.GeoPoint(27.290913,53.927281),new YMaps.GeoPoint(27.332258,53.921901),new YMaps.GeoPoint(27.364716,53.934602),new YMaps.GeoPoint(27.39163,53.931275),new YMaps.GeoPoint(27.419707,53.932117),new YMaps.GeoPoint(27.405395,53.903984),new YMaps.GeoPoint(27.417497,53.879014),new YMaps.GeoPoint(27.37338,53.872877),new YMaps.GeoPoint(27.354138,53.858378),new YMaps.GeoPoint(27.329934,53.848838),new YMaps.GeoPoint(27.294057,53.838077),new YMaps.GeoPoint(27.247193,53.829751),new YMaps.GeoPoint(27.201188,53.84427),new YMaps.GeoPoint(27.177155,53.85442),new YMaps.GeoPoint(27.089608,53.837798),new YMaps.GeoPoint(27.044933,53.854902),new YMaps.GeoPoint(27.035035,53.840808),new YMaps.GeoPoint(26.917904,53.831756),new YMaps.GeoPoint(26.784523,53.834193),new YMaps.GeoPoint(26.726587,53.738536),new YMaps.GeoPoint(26.718519,53.721536),new YMaps.GeoPoint(26.698864,53.713747),new YMaps.GeoPoint(26.580503,53.736805),new YMaps.GeoPoint(26.558617,53.719042),new YMaps.GeoPoint(26.298721,53.723012),new YMaps.GeoPoint(26.259926,53.765242),new YMaps.GeoPoint(26.280584,53.795098),new YMaps.GeoPoint(26.226967,53.826831),new YMaps.GeoPoint(26.279152,53.87839),new YMaps.GeoPoint(26.381119,53.897658),new YMaps.GeoPoint(26.357086,53.924415),new YMaps.GeoPoint(26.302498,53.976056),new YMaps.GeoPoint(26.317947,54.054911),new YMaps.GeoPoint(26.190231,54.018939),new YMaps.GeoPoint(26.154526,54.035919),new YMaps.GeoPoint(26.095818,54.111635),new YMaps.GeoPoint(26.01857,54.12898),new YMaps.GeoPoint(26.00209,54.153371),new YMaps.GeoPoint(26.050499,54.203519),new YMaps.GeoPoint(26.144226,54.194863),new YMaps.GeoPoint(26.195038,54.239934),new YMaps.GeoPoint(26.317261,54.209355),new YMaps.GeoPoint(26.357944,54.216097),new YMaps.GeoPoint(26.368416,54.237721),
+				], {style: "polygon#Example",hasHint: 1,hasBalloon: 1});
+			polygonTo[8].setStyle(styleTo);
+			polygonTo[8].name="Раковское";	
+
+			YMaps.jQuery("#torackow")
+					.bind("click", function () {
+					var link = YMaps.jQuery(this);
+					if (link.hasClass("active")) {
+						map.removeOverlay(polygonTo[8]);
+					} else {
+						map.addOverlay(polygonTo[8]);
+					}
+					link.toggleClass("active");
+					return false;
+				});	
+			
+			
+			<!--****************************************-->						
+			<!--9)toslutsk-->						
+			<!--****************************************-->						
+			polygonTo[9]=new YMaps.Polygon([
+						new YMaps.GeoPoint(27.47775,53.833701),new YMaps.GeoPoint(27.481784,53.840199),new YMaps.GeoPoint(27.563409,53.831467),new YMaps.GeoPoint(27.589015,53.792705),new YMaps.GeoPoint(27.596596,53.79387),new YMaps.GeoPoint(27.600429,53.800469),new YMaps.GeoPoint(27.645233,53.801028),new YMaps.GeoPoint(27.666176,53.787713),new YMaps.GeoPoint(27.741363,53.794015),new YMaps.GeoPoint(27.767199,53.787256),new YMaps.GeoPoint(27.769001,53.760767),new YMaps.GeoPoint(27.730549,53.736754),new YMaps.GeoPoint(27.666862,53.676969),new YMaps.GeoPoint(27.68111,53.648523),new YMaps.GeoPoint(27.692097,53.611654),new YMaps.GeoPoint(27.709091,53.531922),new YMaps.GeoPoint(27.70377,53.475736),new YMaps.GeoPoint(27.770031,53.424295),new YMaps.GeoPoint(27.709949,53.354308),new YMaps.GeoPoint(27.805393,53.210003),new YMaps.GeoPoint(27.950104,53.163603),new YMaps.GeoPoint(28.193691,53.042729),new YMaps.GeoPoint(28.254116,52.846125),new YMaps.GeoPoint(28.411701,52.773728),new YMaps.GeoPoint(28.462856,52.668663),new YMaps.GeoPoint(28.426464,52.640686),new YMaps.GeoPoint(28.431957,52.544928),new YMaps.GeoPoint(28.348873,52.490893),new YMaps.GeoPoint(28.120794,52.523676),new YMaps.GeoPoint(27.951992,52.512833),new YMaps.GeoPoint(27.957485,52.432325),new YMaps.GeoPoint(27.813976,52.387395),new YMaps.GeoPoint(27.623089,52.481402),new YMaps.GeoPoint(27.627895,52.527911),new YMaps.GeoPoint(27.395122,52.53189),new YMaps.GeoPoint(27.26878,52.387815),new YMaps.GeoPoint(27.044933,52.520792),new YMaps.GeoPoint(27.064646,52.700618),new YMaps.GeoPoint(27.010888,52.779059),new YMaps.GeoPoint(26.62402,52.865808),new YMaps.GeoPoint(26.464031,52.873287),new YMaps.GeoPoint(26.402834,52.945204),new YMaps.GeoPoint(26.728991,52.972985),new YMaps.GeoPoint(26.802462,53.065113),new YMaps.GeoPoint(26.909922,53.110793),new YMaps.GeoPoint(26.916445,53.139912),new YMaps.GeoPoint(27.048281,53.191698),new YMaps.GeoPoint(27.099092,53.230445),new YMaps.GeoPoint(27.097376,53.252895),new YMaps.GeoPoint(27.182863,53.398525),new YMaps.GeoPoint(27.17325,53.422834),new YMaps.GeoPoint(27.228182,53.429396),new YMaps.GeoPoint(27.238653,53.441184),new YMaps.GeoPoint(27.262514,53.452149),new YMaps.GeoPoint(27.278307,53.472433),new YMaps.GeoPoint(27.311266,53.505706),new YMaps.GeoPoint(27.261227,53.618536),new YMaps.GeoPoint(27.286218,53.638218),new YMaps.GeoPoint(27.319657,53.657336),new YMaps.GeoPoint(27.366073,53.682691),new YMaps.GeoPoint(27.360734,53.691222),new YMaps.GeoPoint(27.36388,53.703571),new YMaps.GeoPoint(27.417897,53.738318),new YMaps.GeoPoint(27.431831,53.749388),new YMaps.GeoPoint(27.434019,53.773927),new YMaps.GeoPoint(27.448772,53.777085),new YMaps.GeoPoint(27.471168,53.795183),new YMaps.GeoPoint(27.479832,53.805958),
+				], {style: "polygon#Example",hasHint: 1,hasBalloon: 1});
+			polygonTo[9].setStyle(styleTo);
+			polygonTo[9].name="Слуцкое";	
+
+			YMaps.jQuery("#toslutsk")
+					.bind("click", function () {
+					var link = YMaps.jQuery(this);
+					if (link.hasClass("active")) {
+						map.removeOverlay(polygonTo[9]);
+					} else {
+						map.addOverlay(polygonTo[9]);
+					}
+					link.toggleClass("active");
+					return false;
+				});	
+		});
+		</script>
+</body>
+
+</html>
