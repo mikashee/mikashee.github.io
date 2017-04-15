@@ -56,7 +56,7 @@ function execute2() {
 	sqlstr += " CREATE TABLE QQQ([_id] INTEGER PRIMARY KEY AUTOINCREMENT,[FIRST] TEXT NOT NULL,[SECOND] TEXT);";
 	sqlstr += " INSERT INTO QQQ (FIRST, SECOND) VALUES ('123', 'hello');";
 	sqlstr += " INSERT INTO QQQ (FIRST, SECOND) VALUES ('321', 'bb');";
-	sqlstr += " SELECT * FROM QQQ (FIRST, SECOND);";
+	sqlstr += " SELECT * FROM QQQ;";
 	tic();
 	worker.onmessage = function(event) {
 		var results = event.data.results;
