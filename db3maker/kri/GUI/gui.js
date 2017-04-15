@@ -49,14 +49,21 @@ function execute(commands) {
 //
 function execute2() {
 	//var comands2 = "";
-	sqlstr = "DROP TABLE IF EXISTS android_metadata;";
-	sqlstr += " DROP TABLE IF EXISTS QQQ;";
+	sqlstr = "DROP TABLE IF EXISTS android_metadata; "+
+	" DROP TABLE IF EXISTS QQQ; "+
+	" DROP TABLE IF EXISTS employees;"+
+	" CREATE TABLE android_metadata ([locale] TEXT DEFAULT 'en_US'); "+
+	" CREATE TABLE QQQ ([_id] INTEGER PRIMARY KEY AUTOINCREMENT,[FIRST] TEXT NOT NULL,[SECOND] TEXT); "+
+	" INSERT INTO QQQ (FIRST, SECOND) VALUES ('123', 'hello'); "+
+	" INSERT INTO QQQ (FIRST, SECOND) VALUES ('321', 'bb'); "+
+	" SELECT * FROM QQQ; ";
+/*	sqlstr += " DROP TABLE IF EXISTS QQQ;";
 	sqlstr += " DROP TABLE IF EXISTS employees;";
 	sqlstr += " CREATE TABLE android_metadata ([locale] TEXT DEFAULT 'en_US');";
-	sqlstr += " CREATE TABLE QQQ([_id] INTEGER PRIMARY KEY AUTOINCREMENT,[FIRST] TEXT NOT NULL,[SECOND] TEXT);";
+	sqlstr += " CREATE TABLE QQQ ([_id] INTEGER PRIMARY KEY AUTOINCREMENT,[FIRST] TEXT NOT NULL,[SECOND] TEXT);";
 	sqlstr += " INSERT INTO QQQ (FIRST, SECOND) VALUES ('123', 'hello');";
 	sqlstr += " INSERT INTO QQQ (FIRST, SECOND) VALUES ('321', 'bb');";
-	sqlstr += " SELECT * FROM QQQ;";
+	sqlstr += " SELECT * FROM QQQ;";*/
 	tic();
 	worker.onmessage = function(event) {
 		var results = event.data.results;
