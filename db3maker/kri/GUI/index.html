@@ -42,7 +42,8 @@ CREATE TABLE employees( id          integer,  name    text,
 SELECT designation,COUNT(*) AS nbr, (AVG(salary)) AS avg_salary FROM employees GROUP BY designation ORDER BY avg_salary DESC;
 SELECT name,hired_on FROM employees ORDER BY hired_on;</textarea>
 
-<button id="execute" class="button">Execute</button>
+<button id="execute" class="button">Execute from area</button>
+<button id="execute2" class="button">Execute2</button>
 <button id='savedb'  class="button">Save the db</button>
 <label class="button">Load an SQLite database file: <input type='file' id='dbfile' ></label>
 

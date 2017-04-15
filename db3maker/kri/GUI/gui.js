@@ -1,4 +1,5 @@
 var execBtn = document.getElementById("execute");
+var execBtn2 = document.getElementById("execute2");
 var outputElm = document.getElementById('output');
 var errorElm = document.getElementById('error');
 var commandsElm = document.getElementById('commands');
@@ -43,6 +44,37 @@ function execute(commands) {
 	worker.postMessage({action:'exec', sql:commands});
 	outputElm.textContent = "Fetching results...";
 }
+//
+// !!!!NEWRun a command in the database
+//
+function execute2() {
+	var comands2 = "";
+	sqlstr = "DROP TABLE IF EXISTS android_metadata";
+	sqlstr += "DROP TABLE IF EXISTS QQQ";
+	sqlstr += "DROP TABLE IF EXISTS employees";
+	sqlstr += "CREATE TABLE android_metadata ([locale] TEXT DEFAULT 'en_US');";
+	sqlstr += "CREATE TABLE QQQ([_id] INTEGER PRIMARY KEY AUTOINCREMENT,[FIRST] TEXT NOT NULL,[SECOND] TEXT);"
+	sqlstr += "INSERT INTO QQQ (FIRST, SECOND) VALUES ('123', 'hello');"
+	sqlstr += "INSERT INTO QQQ (FIRST, SECOND) VALUES ('321', 'bb');"
+	sqlstr += "SELECT * FROM QQQ (FIRST, SECOND) VALUES ('321', 'bb');"
+	tic();
+	worker.onmessage = function(event) {
+		var results = event.data.results;
+		toc("Executing SQL");
+
+		tic();
+		outputElm.innerHTML = "";
+		for (var i=0; i<results.length; i++) {
+			outputElm.appendChild(tableCreate(results[i].columns, results[i].values));
+		}
+		toc("Displaying results");
+	}
+	worker.postMessage({action:'exec', sql:sqlstr});
+	outputElm.textContent = "Fetching results...";
+}
+//
+// !!!!NEW END
+//
 
 // Create an HTML table
 var tableCreate = function () {
@@ -68,6 +100,11 @@ function execEditorContents () {
 }
 execBtn.addEventListener("click", execEditorContents, true);
 
+function execEditorContents2 () {
+	noerror()
+	execute2();
+}
+execBtn2.addEventListener("click", execEditorContents2, true);
 // Performance measurement functions
 var tictime;
 if (!window.performance || !performance.now) {window.performance = {now:Date.now}}
