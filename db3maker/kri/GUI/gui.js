@@ -192,7 +192,7 @@ goprintElm.addEventListener("click", function() {
 //document.getElementById('goprint').onclick = function(){
 	setArray(text);
 
-}
+});
 function setArray (text) { 
     var array = text.split('\n');
     outputElm.innerHTML = '<ul>';
