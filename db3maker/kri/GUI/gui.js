@@ -162,15 +162,18 @@ dbFileElm.onchange = function() {
 
 // Load a txt-lib from a file
 txtFileElm.onchange = function() {
+	
 	var f = txtFileElm.files[0];
 	var r = new FileReader();
+	console.log('Load a txt-lib from a file');
 	r.onload = function() {
 		var text = r.result;
 		
 		commandsElm2.innerHTML = text;
 		console.log(r.result.substring(0, 200));
-		r.readAsText(f);
+		//r.readAsText(f);
 	}
+	r.readAsText(f);
 	//r.readAsArrayBuffer(f);
 	
 }
