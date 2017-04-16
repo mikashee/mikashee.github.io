@@ -7,6 +7,11 @@ var commandsElm2 = document.getElementById('commands2');
 var dbFileElm = document.getElementById('dbfile');
 var txtFileElm = document.getElementById('txtfile');
 var savedbElm = document.getElementById('savedb');
+var goprintElm = document.getElementById('goprint');
+
+//text from file:
+var text;
+var wordsList;
 
 // Start the worker in which sql.js will run
 var worker = new Worker("../js/worker.sql.js");
@@ -55,10 +60,17 @@ function execute2() {
 	" DROP TABLE IF EXISTS QQQ; "+
 	" DROP TABLE IF EXISTS employees;"+
 	" CREATE TABLE android_metadata ([locale] TEXT DEFAULT 'en_US'); "+
-	" CREATE TABLE QQQ ([_id] INTEGER PRIMARY KEY AUTOINCREMENT,[FIRST] TEXT NOT NULL,[SECOND] TEXT); "+
-	" INSERT INTO QQQ (FIRST, SECOND) VALUES ('123', 'hello'); "+
-	" INSERT INTO QQQ (FIRST, SECOND) VALUES ('321', 'bb'); "+
-	" SELECT * FROM QQQ; ";
+	" CREATE TABLE QQQ ([_id] INTEGER PRIMARY KEY AUTOINCREMENT,[FIRST] TEXT NOT NULL,[SECOND] TEXT); ";
+	
+	for (var i = 0; i < wordsList.length; i++) {
+		var tire = wordsList[i].indexOf("—");
+		var FIRST = wordsList[i].substring(0, tire + 1);
+		var SECOND = wordsList[i].substring(tire + 1);
+		sqlstr += " INSERT INTO QQQ (FIRST,SECOND)"+
+		" VALUES ('" + FIRST + "','" + SECOND + "');";
+    }
+	sqlstr += " SELECT * FROM QQQ; ";
+	
 /*	sqlstr += " DROP TABLE IF EXISTS QQQ;";
 	sqlstr += " DROP TABLE IF EXISTS employees;";
 	sqlstr += " CREATE TABLE android_metadata ([locale] TEXT DEFAULT 'en_US');";
@@ -164,7 +176,6 @@ dbFileElm.onchange = function() {
 txtFileElm.onchange = function() {
 	var f = txtFileElm.files[0];
 	var r = new FileReader();	
-	var text;
 	r.onload = function() {
 		text = r.result;
 		commandsElm2.innerHTML = text;
@@ -175,7 +186,11 @@ txtFileElm.onchange = function() {
 	}
 	tic();
 	r.readAsText(f);
+	
+}
+document.getElementById('goprint').onclick = function(){
 	setArray(text);
+
 }
 function setArray (text) { 
     var array = text.split('\n');
@@ -188,6 +203,7 @@ function setArray (text) {
             {
 				//значит строка годная, работаю с ней!!!
 				outputElm.innerHTML += '<li>' + array[i] + '</li>';
+				wordsList.push(array[i]);
 			}
     }
    	outputElm.innerHTML += '</ul>';
