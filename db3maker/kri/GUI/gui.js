@@ -168,9 +168,10 @@ txtFileElm.onchange = function() {
 		var text = r.result;
 		commandsElm2.innerHTML = text;
 		console.log(r.result.substring(0, 200));
+		r.readAsText(f);
 	}
 	//r.readAsArrayBuffer(f);
-	r.readAsText(f);
+	
 }
 /*      var openFile = function(event) {
         var input = event.target;
