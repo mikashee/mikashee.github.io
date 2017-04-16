@@ -167,16 +167,18 @@ txtFileElm.onchange = function() {
 	var r = new FileReader();	
 	console.log("--lol2--");
 	r.onload = function() {
-	console.log("--lol3--");
+		console.log("--lol3--");
 		var text = r.result;
 		console.log("--lol4--");
 
 		commandsElm2.innerHTML = text;
 		console.log("--78"+r.result.substring(0, 200));
+		
 		r.readAsText(f);
+		tic();
 	}
-	
-	console.log("--88"+r.result.substring(0, 200));
+	r.readAsText(f);
+	//console.log("--88"+r.result.substring(0, 200));
 	//r.readAsArrayBuffer(f);
 }
 /*      var openFile = function(event) {
