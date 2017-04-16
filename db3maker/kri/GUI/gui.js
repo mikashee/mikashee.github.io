@@ -162,28 +162,11 @@ dbFileElm.onchange = function() {
 
 // Load a txt-lib from a file
 txtFileElm.onchange = function() {
-	console.log("--lol1--");
 	var f = txtFileElm.files[0];
 	var r = new FileReader();	
-	console.log("--lol2--");
 	r.onload = function() {
-		//console.log("--lol3--");
 		var text = r.result;
-		//console.log("--lol4--");
-		
-        var array = text.split('\n');
-        outputElm.innerHTML = '<ul>';
-        for (var i = 0; i < array.length; i++) {
-			if (array[i].contains("—") &&
-                    !(array[i].indexOf("—")==0) &&
-                    !(array[i].substring(array[i].indexOf("—") + 1).contains("—")) &&
-                    !(array[i].endsWith("—")))
-                {
-					//значит строки годная, работаю с ней!!!
-					outputElm.innerHTML += '<li>' + array[i] + '</li>';
-				}
-        }
-   		outputElm.innerHTML += '</ul>';
+		setArray(text);
 		
 		commandsElm2.innerHTML = text;
 		console.log(r.result.substring(0, 200));
@@ -193,8 +176,21 @@ txtFileElm.onchange = function() {
 	}
 	tic();
 	r.readAsText(f);
-	//console.log("--88"+r.result.substring(0, 200));
-	//r.readAsArrayBuffer(f);
+}
+function setArray (text) { 
+    var array = text.split('\n');
+    outputElm.innerHTML = '<ul>';
+    for (var i = 0; i < array.length; i++) {
+		if (array[i].contains("—") &&
+                !(array[i].indexOf("—")==0) &&
+                !(array[i].substring(array[i].indexOf("—") + 1).contains("—")) &&
+                !(array[i].endsWith("—")))
+            {
+				//значит строка годная, работаю с ней!!!
+				outputElm.innerHTML += '<li>' + array[i] + '</li>';
+			}
+    }
+   	outputElm.innerHTML += '</ul>';
 }
 /*      var openFile = function(event) {
         var input = event.target;
