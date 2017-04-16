@@ -172,7 +172,7 @@ txtFileElm.onchange = function() {
 		console.log("--lol4--");
 
 		commandsElm2.innerHTML = text;
-		console.log("--78"+r.result.substring(0, 200));
+		console.log(r.result.substring(0, 200));
 		
 		r.readAsText(f);
 		tic();
