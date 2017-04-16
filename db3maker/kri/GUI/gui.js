@@ -167,16 +167,24 @@ txtFileElm.onchange = function() {
 	var r = new FileReader();	
 	console.log("--lol2--");
 	r.onload = function() {
-		console.log("--lol3--");
+		//console.log("--lol3--");
 		var text = r.result;
-		console.log("--lol4--");
-
+		//console.log("--lol4--");
+		
+        var array = text.split('\n');
+        outputElm.innerHTML = '<ul>';
+        for (var i = 0; i < array.length; i++) {
+	    outputElm.innerHTML += '<li>' + array[i] + '</li>';
+        }
+   		outputElm.innerHTML += '</ul>';
+		
 		commandsElm2.innerHTML = text;
 		console.log(r.result.substring(0, 200));
 		
-		r.readAsText(f);
-		tic();
+		//r.readAsText(f);
+		//tic();
 	}
+	tic();
 	r.readAsText(f);
 	//console.log("--88"+r.result.substring(0, 200));
 	//r.readAsArrayBuffer(f);
