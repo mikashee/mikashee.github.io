@@ -188,7 +188,8 @@ txtFileElm.onchange = function() {
 	r.readAsText(f);
 	
 }
-document.getElementById('goprint').onclick = function(){
+goprintElm.addEventListener("click", function() {
+//document.getElementById('goprint').onclick = function(){
 	setArray(text);
 
 }
@@ -196,7 +197,7 @@ function setArray (text) {
     var array = text.split('\n');
     outputElm.innerHTML = '<ul>';
     for (var i = 0; i < array.length; i++) {
-		if (array[i].contains("—") &&
+		if (array[i].includes("—") &&
                 !(array[i].indexOf("—")==0) &&
                 !(array[i].substring(array[i].indexOf("—") + 1).contains("—")) &&
                 !(array[i].endsWith("—")))
