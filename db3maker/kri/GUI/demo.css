@@ -58,7 +58,11 @@ h1 {
 	transition:.5s;
 	overflow:hidden;
 }
-
+#commands2{
+	height: auto;
+	min-width: 100%;
+	max-width: 100%;
+}
 #output {
 	overflow: auto;
 }
