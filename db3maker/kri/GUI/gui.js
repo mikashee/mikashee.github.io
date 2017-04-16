@@ -3,7 +3,9 @@ var execBtn2 = document.getElementById("execute2");
 var outputElm = document.getElementById('output');
 var errorElm = document.getElementById('error');
 var commandsElm = document.getElementById('commands');
+var commandsElm2 = document.getElementById('commands2');
 var dbFileElm = document.getElementById('dbfile');
+var txtFileElm = document.getElementById('txtfile');
 var savedbElm = document.getElementById('savedb');
 
 // Start the worker in which sql.js will run
@@ -157,6 +159,32 @@ dbFileElm.onchange = function() {
 	}
 	r.readAsArrayBuffer(f);
 }
+
+// Load a txt-lib from a file
+txtFileElm.onchange = function() {
+	var f = txtFileElm.files[0];
+	var r = new FileReader();
+	r.onload = function() {
+		var text = r.result;
+		commandsElm2.innerHTML = text;
+		console.log(r.result.substring(0, 200));
+	}
+	//r.readAsArrayBuffer(f);
+	r.readAsText(f);
+}
+/*      var openFile = function(event) {
+        var input = event.target;
+
+        var reader = new FileReader();
+        reader.onload = function(){
+          var text = reader.result;
+          var node = document.getElementById('output');
+          node.innerText = text;
+          console.log(reader.result.substring(0, 200));
+        };
+        reader.readAsText(input.files[0]);
+      };
+	  */
 
 // Save the db to a file
 function savedb () {
