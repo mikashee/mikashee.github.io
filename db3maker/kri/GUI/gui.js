@@ -166,6 +166,14 @@ txtFileElm.onchange = function() {
 	var r = new FileReader();
 	r.onload = function() {
 		var text = r.result;
+		
+		var array = text.split('\n');
+		outputElm.innerHTML = '<ul>';
+        for (var i = 0; i < array.length; i++) {
+			outputElm.innerHTML += '<li>' + array[i] + '</li>';
+        }
+        outputElm.innerHTML += '</ul>';
+		
 		commandsElm2.innerHTML = text;
 		console.log(r.result.substring(0, 200));
 		r.readAsText(f);
