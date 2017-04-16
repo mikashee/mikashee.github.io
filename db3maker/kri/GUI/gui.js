@@ -164,10 +164,9 @@ dbFileElm.onchange = function() {
 txtFileElm.onchange = function() {
 	var f = txtFileElm.files[0];
 	var r = new FileReader();	
+	var text;
 	r.onload = function() {
-		var text = r.result;
-		setArray(text);
-		
+		text = r.result;
 		commandsElm2.innerHTML = text;
 		console.log(r.result.substring(0, 200));
 		
@@ -176,6 +175,7 @@ txtFileElm.onchange = function() {
 	}
 	tic();
 	r.readAsText(f);
+	setArray(text);
 }
 function setArray (text) { 
     var array = text.split('\n');
@@ -192,6 +192,7 @@ function setArray (text) {
     }
    	outputElm.innerHTML += '</ul>';
 }
+
 /*      var openFile = function(event) {
         var input = event.target;
 
