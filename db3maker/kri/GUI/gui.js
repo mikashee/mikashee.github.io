@@ -11,7 +11,7 @@ var goprintElm = document.getElementById('goprint');
 
 //text from file:
 var text;
-var wordsList;
+var wordsList = [];
 
 // Start the worker in which sql.js will run
 var worker = new Worker("../js/worker.sql.js");
