@@ -199,7 +199,7 @@ function setArray (text) {
     for (var i = 0; i < array.length; i++) {
 		if (array[i].includes("—") &&
                 !(array[i].indexOf("—")==0) &&
-                !(array[i].substring(array[i].indexOf("—") + 1).contains("—")) &&
+                !(array[i].substring(array[i].indexOf("—") + 1).includes("—")) &&
                 !(array[i].endsWith("—")))
             {
 				//значит строка годная, работаю с ней!!!
