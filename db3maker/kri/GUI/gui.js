@@ -178,9 +178,9 @@ txtFileElm.onchange = function() {
 	var r = new FileReader();	
 	r.onload = function() {
 		text = r.result;
-		commandsElm2.innerHTML = text;
-		console.log(r.result.substring(0, 200));
-		
+		//commandsElm2.innerHTML = text;
+		//console.log(r.result.substring(0, 200));
+		setArray(text);
 		//r.readAsText(f);
 		//tic();
 	}
@@ -190,7 +190,7 @@ txtFileElm.onchange = function() {
 }
 goprintElm.addEventListener("click", function() {
 //document.getElementById('goprint').onclick = function(){
-	setArray(text);
+	
 
 });
 function setArray (text) { 
