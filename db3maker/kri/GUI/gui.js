@@ -174,7 +174,14 @@ txtFileElm.onchange = function() {
         var array = text.split('\n');
         outputElm.innerHTML = '<ul>';
         for (var i = 0; i < array.length; i++) {
-	    outputElm.innerHTML += '<li>' + array[i] + '</li>';
+			if (array[i].contains("—") &&
+                    !(array[i].indexOf("—")==0) &&
+                    !(array[i].substring(array[i].indexOf("—") + 1).contains("—")) &&
+                    !(array[i].endsWith("—")))
+                {
+					//значит строки годная, работаю с ней!!!
+					outputElm.innerHTML += '<li>' + array[i] + '</li>';
+				}
         }
    		outputElm.innerHTML += '</ul>';
 		
