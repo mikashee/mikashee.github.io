@@ -169,7 +169,7 @@ txtFileElm.onchange = function() {
 		commandsElm2.innerHTML = text;
 		console.log(r.result.substring(0, 200));
 		r.readAsText(f);
-
+/*
 		var array = text.split('\n');
 		console.log('count of lines------->'+array.length);
 		outputElm.innerHTML = '<ul>';
@@ -177,7 +177,7 @@ txtFileElm.onchange = function() {
 			outputElm.innerHTML += '<li>' + array[i] + '</li>';
         }
         outputElm.innerHTML += '</ul>';
-		
+		*/
 	}
 	//r.readAsArrayBuffer(f);
 	
