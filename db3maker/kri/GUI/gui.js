@@ -1,13 +1,9 @@
-var execBtn = document.getElementById("execute");
 var execBtn2 = document.getElementById("execute2");
 var outputElm = document.getElementById('output');
 var errorElm = document.getElementById('error');
-var commandsElm = document.getElementById('commands');
 var commandsElm2 = document.getElementById('commands2');
-var dbFileElm = document.getElementById('dbfile');
 var txtFileElm = document.getElementById('txtfile');
 var savedbElm = document.getElementById('savedb');
-var goprintElm = document.getElementById('goprint');
 
 //text from file:
 var text;
@@ -104,21 +100,6 @@ function toc(msg) {
 	var dt = performance.now()-tictime;
 	console.log((msg||'toc') + ": " + dt + "ms");
 }
-
-// Add syntax highlihjting to the textarea
-var editor = CodeMirror.fromTextArea(commandsElm, {
-    mode: 'text/x-mysql',
-    viewportMargin: Infinity,
-    indentWithTabs: true,
-    smartIndent: true,
-    lineNumbers: true,
-    matchBrackets : true,
-    autofocus: true,
-		extraKeys: {
-			"Ctrl-Enter": execEditorContents,
-			"Ctrl-S": savedb,
-		}
-});
 
 // Load a txt-lib from a file
 txtFileElm.onchange = function() {
