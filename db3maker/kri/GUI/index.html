@@ -2,32 +2,33 @@
 <html>
 <head>
   <meta charset="utf8">
-  <title>sql.js demo: Online SQL interpreter</title>
-  <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+  <title>Online DB Creator</title>
   <link rel="stylesheet" href="demo.css">
-  <script src="codemirror/lib/codemirror.js"></script>
 
 </head>
 <body>
 <!-- Github ribbon -->
 <a href="https://github.com/kripken/sql.js"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
 
-	<h1>Online SQL interpreter</h1>
+	
 
 <main>
-    
-<label class="button">Load an TXT file: <input type='file' id='txtfile' accept='text/plain' ></label>
 
-<button id="execute2" class="button">Execute2</button>
-<button id='savedb'  class="button">Save the db</button>
-
+<div id="main">
+<h1>Online DB Creator</h1>
+<div class="btnpanel">
+	<div class = "inputarea">
+		<div id="filename">Выбрать файл</div>
+		<input type='file' id='txtFile' class="file-input" accept='text/plain'>
+   </div> 
+	<button id="execute2" class="button">Конвертировать</button>
+	<button id='savedb'  class="button">Сохранить</button>
+</div>
 <div id="error" class="error"></div>
 
 <pre id="output">Results will be displayed here</pre>
+</div>
 
-    <textarea id="commands2">
-	
-	</textarea>
 </main>
 
 <script src="codemirror/mode/sql/sql.js"></script>

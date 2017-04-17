@@ -1,20 +1,21 @@
 html {
-	background:#222;
+	background:#37385F;
 	margin:auto;
 	width:80%;
+	
 }
 
 body{
-	background: linear-gradient(#aaa 0, #ddd 10px, #fff 55px);
+	/*background: linear-gradient(#aaa 0, #ddd 10px, #fff 155px);
 	border: 1px solid black;
 	padding: 10px 20px;
 	box-shadow: 5px 0px 30px #000;
-	border-radius: 8px;
+	border-radius: 8px;*/
 }
 
 h1 {
 	text-align: center;
-	color: #222;
+	color: #fff;
 	margin: 0 0 30px;
 }
 
@@ -28,6 +29,7 @@ h1 {
 	transition: .3s;
 	font-family: ubuntu, sans-serif;
 	font-size: 1em;
+	min-width:100px;
 }
 
 .button:active {
@@ -38,33 +40,26 @@ h1 {
 	box-shadow: 0 0 2px #222;
 }
 
-#execute {
+#execute2 {
+	margin-top: 5px;
+}
+#savedb {
+	margin-top: 5px;
+}
+#txtfile{
 	margin-top: 5px;;
-	width: 10%;
+	width: 40%;
 	min-width:100px;
 }
-
-.CodeMirror {
-  border: 1px solid #222;
-  height: auto;
-}
-.CodeMirror-scroll {
-  overflow-y: hidden;
-  overflow-x: auto;
-}
-
 .error {
 	color:red;
 	transition:.5s;
 	overflow:hidden;
 }
-#commands2{
-	height: auto;
-	min-width: 100%;
-	max-width: 100%;
-}
+
 #output {
 	overflow: auto;
+	color: #fff;
 }
 
 table {
@@ -81,5 +76,48 @@ th, td {
 
 footer {
 	font-size:.8em;
-	color: #222;
+	color: #fff;
 }
+a{
+	color: #fff000;
+}
+menu {
+	
+	background: #444;
+}
+#menu {
+	
+	text-align: center;
+	background: #111;
+	
+}
+#filename{
+	color: #fff;
+	margin: 26px 26px 26px;
+	cursor: pointer;
+	font-size: 2em;
+	overflow: hidden;
+}
+.inputarea{
+	width: 70%;
+	min-height: 70px;
+	border: 2px dashed #fff;
+	border-radius: 3px;
+	position: relative;
+	/*margin: 26px 26px 26px;*/
+	transition: 0.9s;
+}
+.file-input {
+	
+	left: 0;
+	top: 0;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  position: absolute;
+
+}
+.inputarea:hover {
+    background-color: #3F4069;
+  } 
