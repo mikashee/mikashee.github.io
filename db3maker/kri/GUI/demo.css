@@ -131,3 +131,7 @@ menu {
   overflow-y: hidden;
   overflow-x: auto;
 }
+#commands{
+	height:0px;
+	opacity: 0;
+}
