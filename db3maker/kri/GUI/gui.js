@@ -102,20 +102,22 @@ function toc(msg) {
 }
 
 // Load a txt-lib from a file
-txtFileElm.onchange = function() {
-	var f = txtFileElm.files[0];
-	var r = new FileReader();	
-	r.onload = function() {
-		text = r.result;
-		//commandsElm2.innerHTML = text;
-		//console.log(r.result.substring(0, 200));
-		setArray(text);
-		//r.readAsText(f);
-		//tic();
+document.onload = function() {
+	txtFileElm.onchange = function() {
+		var f = txtFileElm.files[0];
+		var r = new FileReader();	
+		r.onload = function() {
+			text = r.result;
+			//commandsElm2.innerHTML = text;
+			//console.log(r.result.substring(0, 200));
+			setArray(text);
+			//r.readAsText(f);
+			//tic();
+		}
+		tic();
+		r.readAsText(f);
+		
 	}
-	tic();
-	r.readAsText(f);
-	
 }
 
 function setArray (text) { 
