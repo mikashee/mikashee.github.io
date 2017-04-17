@@ -34,23 +34,6 @@ function noerror() {
 		errorElm.style.height = '0';
 }
 
-// Run a command in the database
-function execute(commands) {
-	tic();
-	worker.onmessage = function(event) {
-		var results = event.data.results;
-		toc("Executing SQL");
-
-		tic();
-		outputElm.innerHTML = "";
-		for (var i=0; i<results.length; i++) {
-			outputElm.appendChild(tableCreate(results[i].columns, results[i].values));
-		}
-		toc("Displaying results");
-	}
-	worker.postMessage({action:'exec', sql:commands});
-	outputElm.textContent = "Fetching results...";
-}
 //
 // !!!!NEWRun a command in the database
 //
@@ -71,13 +54,6 @@ function execute2() {
     }
 	sqlstr += " SELECT * FROM QQQ; ";
 	
-/*	sqlstr += " DROP TABLE IF EXISTS QQQ;";
-	sqlstr += " DROP TABLE IF EXISTS employees;";
-	sqlstr += " CREATE TABLE android_metadata ([locale] TEXT DEFAULT 'en_US');";
-	sqlstr += " CREATE TABLE QQQ ([_id] INTEGER PRIMARY KEY AUTOINCREMENT,[FIRST] TEXT NOT NULL,[SECOND] TEXT);";
-	sqlstr += " INSERT INTO QQQ (FIRST, SECOND) VALUES ('123', 'hello');";
-	sqlstr += " INSERT INTO QQQ (FIRST, SECOND) VALUES ('321', 'bb');";
-	sqlstr += " SELECT * FROM QQQ;";*/
 	tic();
 	worker.onmessage = function(event) {
 		var results = event.data.results;
@@ -114,12 +90,6 @@ var tableCreate = function () {
   }
 }();
 
-// Execute the commands when the button is clicked
-function execEditorContents () {
-	noerror()
-	execute (editor.getValue() + ';');
-}
-execBtn.addEventListener("click", execEditorContents, true);
 
 function execEditorContents2 () {
 	noerror()
@@ -150,28 +120,6 @@ var editor = CodeMirror.fromTextArea(commandsElm, {
 		}
 });
 
-// Load a db from a file
-dbFileElm.onchange = function() {
-	var f = dbFileElm.files[0];
-	var r = new FileReader();
-	r.onload = function() {
-		worker.onmessage = function () {
-			toc("Loading database from file");
-			// Show the schema of the loaded database
-			editor.setValue("SELECT `name`, `sql`\n  FROM `sqlite_master`\n  WHERE type='table';");
-			execEditorContents();
-		};
-		tic();
-		try {
-			worker.postMessage({action:'open',buffer:r.result}, [r.result]);
-		}
-		catch(exception) {
-			worker.postMessage({action:'open',buffer:r.result});
-		}
-	}
-	r.readAsArrayBuffer(f);
-}
-
 // Load a txt-lib from a file
 txtFileElm.onchange = function() {
 	var f = txtFileElm.files[0];
@@ -188,11 +136,7 @@ txtFileElm.onchange = function() {
 	r.readAsText(f);
 	
 }
-goprintElm.addEventListener("click", function() {
-//document.getElementById('goprint').onclick = function(){
-	
 
-});
 function setArray (text) { 
     var array = text.split('\n');
     outputElm.innerHTML = '<ul>';
@@ -209,20 +153,6 @@ function setArray (text) {
     }
    	outputElm.innerHTML += '</ul>';
 }
-
-/*      var openFile = function(event) {
-        var input = event.target;
-
-        var reader = new FileReader();
-        reader.onload = function(){
-          var text = reader.result;
-          var node = document.getElementById('output');
-          node.innerText = text;
-          console.log(reader.result.substring(0, 200));
-        };
-        reader.readAsText(input.files[0]);
-      };
-	  */
 
 // Save the db to a file
 function savedb () {
