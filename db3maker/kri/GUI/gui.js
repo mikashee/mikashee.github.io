@@ -4,6 +4,7 @@ var errorElm = document.getElementById('error');
 var commandsElm2 = document.getElementById('commands2');
 var txtFileElm = document.getElementById('txtfile');
 var savedbElm = document.getElementById('savedb');
+var commandsElm = document.getElementById('commands');
 
 //text from file:
 var text;
