@@ -121,3 +121,13 @@ menu {
 .inputarea:hover {
     background-color: #3F4069;
   } 
+  
+  
+  .CodeMirror {
+  border: 1px solid #222;
+  height: auto;
+}
+.CodeMirror-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+}

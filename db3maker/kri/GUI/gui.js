@@ -1,4 +1,9 @@
-
+var execBtn2 = document.getElementById("execute2");
+var outputElm = document.getElementById('output');
+var errorElm = document.getElementById('error');
+var commandsElm2 = document.getElementById('commands2');
+var txtFileElm = document.getElementById('txtfile');
+var savedbElm = document.getElementById('savedb');
 
 //text from file:
 var text;
@@ -150,3 +155,18 @@ function savedb () {
 	worker.postMessage({action:'export'});
 }
 savedbElm.addEventListener("click", savedb, true);
+
+// Add syntax highlihjting to the textarea
+var editor = CodeMirror.fromTextArea(commandsElm, {
+    mode: 'text/x-mysql',
+    viewportMargin: Infinity,
+    indentWithTabs: true,
+    smartIndent: true,
+    lineNumbers: true,
+    matchBrackets : true,
+    autofocus: true,
+		extraKeys: {
+			"Ctrl-Enter": execEditorContents2,
+			"Ctrl-S": savedb,
+		}
+});
