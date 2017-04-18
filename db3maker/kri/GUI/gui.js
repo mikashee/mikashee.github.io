@@ -119,7 +119,6 @@ txtFileElm.onchange = function() {
 		//tic();
 		filename = txtFileElm.value.replace(/\\/g, '/').split('/').pop();
 		filenameElm.innerHTML = filename;
-		filename = 
 		//text.replace(/\n/g, '<br>');
 	}
 	tic();
