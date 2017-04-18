@@ -22,7 +22,7 @@
 <div class="btnpanel">
 	<div class = "inputarea">
 		<div id="filename">Выбрать файл</div>
-		<input type='file' id='txtFile' class="file-input" accept='text/plain'>
+		<input type='file' id='txtFile' class="file-input" accept='text/plain' onchange='addFileClick()'>
    </div> 
 	<button id="execute2" class="button">Конвертировать</button>
 	<button id='savedb'  class="button">Сохранить</button>
@@ -33,6 +33,24 @@
 </div>
 
 </main>
+<script>
+var txtFileElm = document.getElementById('txtfile');
+txtFileElm.onchange = function() {
+	var f = txtFileElm.files[0];
+	var r = new FileReader();	
+	r.onload = function() {
+		text = r.result;
+		//commandsElm2.innerHTML = text;
+		//console.log(r.result.substring(0, 200));
+		setArray(text);
+		//r.readAsText(f);
+		//tic();
+	}
+	tic();
+	r.readAsText(f);
+	
+}
+</script>
 
 <script src="codemirror/mode/sql/sql.js"></script>
 
