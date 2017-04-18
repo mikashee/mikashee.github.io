@@ -2,7 +2,7 @@ var execBtn2 = document.getElementById("execute2");
 var outputElm = document.getElementById('output');
 var errorElm = document.getElementById('error');
 var commandsElm2 = document.getElementById('commands2');
-//var txtFileElm = document.getElementById('txtfile');
+var txtFileElm = document.getElementById('txtfile');
 var savedbElm = document.getElementById('savedb');
 var commandsElm = document.getElementById('commands');
 
@@ -104,7 +104,6 @@ function toc(msg) {
 
 // Load a txt-lib from a file
 //function addFileClick {
-/*
 txtFileElm.onchange = function() {
 	var f = txtFileElm.files[0];
 	var r = new FileReader();	
@@ -119,7 +118,7 @@ txtFileElm.onchange = function() {
 	tic();
 	r.readAsText(f);
 	
-}*/
+}
 
 
 function setArray (text) { 
