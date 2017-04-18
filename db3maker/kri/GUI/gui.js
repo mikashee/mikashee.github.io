@@ -9,6 +9,7 @@ var filenameElm = document.getElementById('filename');
 
 
 //text from file:
+var fileName;
 var text;
 var wordsList = [];
 
@@ -116,7 +117,9 @@ txtFileElm.onchange = function() {
 		setArray(text);
 		//r.readAsText(f);
 		//tic();
-		filenameElm.innerHTML = txtFileElm.value.replace(/\\/g, '/').split('/').pop();
+		filename = txtFileElm.value.replace(/\\/g, '/').split('/').pop();
+		filenameElm.innerHTML = filename;
+		filename = 
 		//text.replace(/\n/g, '<br>');
 	}
 	tic();
@@ -150,7 +153,8 @@ function savedb () {
 		var blob = new Blob([arraybuff]);
 		var a = document.createElement("a");
 		a.href = window.URL.createObjectURL(blob);
-		a.download = "sql.db";
+		filename = filename.replace('.txt', '.db');
+		a.download = filename;//"sql.db";
 		a.onclick = function() {
 			setTimeout(function() {
 				window.URL.revokeObjectURL(a.href);
