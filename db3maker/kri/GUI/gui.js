@@ -5,6 +5,8 @@ var commandsElm2 = document.getElementById('commands2');
 var txtFileElm = document.getElementById('txtfile');
 var savedbElm = document.getElementById('savedb');
 var commandsElm = document.getElementById('commands');
+var filenameElm = document.getElementById('filename');
+
 
 //text from file:
 var text;
@@ -114,6 +116,7 @@ txtFileElm.onchange = function() {
 		setArray(text);
 		//r.readAsText(f);
 		//tic();
+		filenameElm.innerHTML = f.replace (/\\/g, '/').split ('/').pop ();
 	}
 	tic();
 	r.readAsText(f);
