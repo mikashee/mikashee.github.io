@@ -46,11 +46,6 @@ h1 {
 #savedb {
 	margin-top: 5px;
 }
-#txtfile{
-	margin-top: 5px;;
-	width: 40%;
-	min-width:100px;
-}
 .error {
 	color:red;
 	transition:.5s;

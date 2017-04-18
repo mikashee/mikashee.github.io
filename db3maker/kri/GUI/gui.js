@@ -116,7 +116,8 @@ txtFileElm.onchange = function() {
 		setArray(text);
 		//r.readAsText(f);
 		//tic();
-		filenameElm.innerHTML = f.replace (/\\/g, '/').split ('/').pop ();
+		filenameElm.innerHTML = f;//.replace (/\\/g, '/').split ('/').pop ();
+		text.replace(/\n/g, '<br>');
 	}
 	tic();
 	r.readAsText(f);
