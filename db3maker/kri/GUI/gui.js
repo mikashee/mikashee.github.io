@@ -167,7 +167,7 @@ function savedb () {
 savedbElm.addEventListener("click", savedb, true);
 
 // Add syntax highlihjting to the textarea
-var editor = CodeMirror.fromTextArea(commandsElm, {
+/*var editor = CodeMirror.fromTextArea(commandsElm, {
     mode: 'text/x-mysql',
     viewportMargin: Infinity,
     indentWithTabs: true,
@@ -180,3 +180,4 @@ var editor = CodeMirror.fromTextArea(commandsElm, {
 			"Ctrl-S": savedb,
 		}
 });
+*/
