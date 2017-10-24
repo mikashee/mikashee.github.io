@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>db3Maker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+</head>
+
+<body>
+    <!-- управляющие кнопки -->
+	<input type="file" value="Выбрать файл для конвертации (1)" id="b1" class="ibtn" accept="text/plain" />
+			
+	<input type="button" value="Конвертировать (2)" id="b2" class="ibtn">
+	<input type="button" value="Проверить результат (3)" id="b3" class="ibtn">
+	<input type="button" value="Сохранить результат (4)" id="b4" class="ibtn"><br>
+	
+	<!-- поле вывода -->
+	<div id="out2"></div><br><br>
+	
+	
+	<!-- old -->
+	<input id="cordinputarea" class="cordinputarea" type="text" placeholder="Сюда можно вставить массив координат в формате [[27.710227,53.932382],[27.695078,53.947575],...,[27.719626,53.955396]]"></input>
+	<input type="button" value="Display on map" id="cordinputbtn" class="cordinputbtn"> <br>
+	<input id="cordinputarea2" class="cordinputarea" type="text" placeholder="Сюда можно вставить массив координат в формате 27.710227,53.932382;27.695078,53.947575;...;27.719626,53.955396"></input>
+	<input type="button" value="Display on map" id="cordinputbtn2" class="cordinputbtn"> <br>
+	<div id="ym"></div>
+	<input type="button" value="Obtain the coordinates" id="crd">
+	<div id="out"></div>
+	<style>
+		#out2{font:0.8em/1.4 Lucida Console,Courier New,Arial; width:80%; min-height:5em; box-sizing:border-box;padding:.2em .5em; border-radius:.2em;border:1px solid #ccc;}
+		.ibtn{font:.9em/1.3 Arial; color:#fff;padding:.4em 1.2em;margin-bottom:1em;border-radius:.2em;border:1px solid #1a941a;background-color:#46cc46;background:linear-gradient(to top, #2abc2a, #7eeb7e);}
+		.ibtn:hover{border:1px solid #1ba11b;background-color:#4ad94a;background:linear-gradient(to top, #2cc92c, #86f786); cursor:pointer;}
+
+	
+		#ym{width:80%;height:15em;margin-bottom:1em;}
+		.cordinputbtn{font:.9em/1.3 Arial; color:#fff;padding:.4em 1.2em;margin-bottom:1em;border-radius:.2em;border:1px solid #1a941a;background-color:#46cc46;background:linear-gradient(to top, #2abc2a, #7eeb7e);}
+		.cordinputbtn:hover{border:1px solid #1ba11b;background-color:#4ad94a;background:linear-gradient(to top, #2cc92c, #86f786); cursor:pointer;}
+		#crd{font:.9em/1.3 Arial; color:#fff;padding:.4em 1.2em;margin-bottom:1em;border-radius:.2em;border:1px solid #1a941a;background-color:#46cc46;background:linear-gradient(to top, #2abc2a, #7eeb7e);}
+		#crd:hover{border:1px solid #1ba11b;background-color:#4ad94a;background:linear-gradient(to top, #2cc92c, #86f786); cursor:pointer;}
+		#out{font:0.8em/1.4 Lucida Console,Courier New,Arial; width:80%; min-height:5em; box-sizing:border-box;padding:.2em .5em; border-radius:.2em;border:1px solid #ccc;}
+		.cordinputarea{font:0.8em/1.4 Lucida Console,Courier New,Arial; width:70%; min-height:2em; box-sizing:border-box;padding:.2em .5em; border-radius:.2em;border:1px solid #ccc;}
+	</style>
+	
+	
+	<input type='text' id='input' placeholder="ENTER SOME SQL" size='50'
+	value="CREATE TABLE test(val);INSERT INTO test VALUES (666); SELECT * FROM test">
+	<button id='submit'>Execute</button>
+	<pre id='result'></pre>
+	<pre id='error'></pre>
+	<script>
+
+	
+	var myProject = {};
+ function f(x,y)
+{
+
+	alert( '-x->'+x+'<--   y->'+y+'<--');
+}
+
+	myProject.myObject = (function() {
+		var myPrivateVar = "private";
+		var myPrivateFunction = function() {
+			return myPrivateVar;
+		};
+ 
+		return {
+			publicFunctionName: myPrivateFunction
+		};
+	})();
+
+		function MyObject(age){
+			this.age = age;
+			this.getAge = function()
+			{
+				return age;
+			}
+		}
+		//var Joe = new MyObject(20);
+		
+		b1.addEventListener("click", function() {
+		
+			//alert( 'тут будет выпадать окошко диалога для выбора файла!' );
+		});
+		b2.addEventListener("click", function() {
+		var Joe = new MyObject(20);
+		alert(Joe.age+Joe.getAge());
+
+		
+		});
+		b3.addEventListener("click", function() {
+		var b = myProject.myObject.myPrivateFunction();
+			alert( '-->'+b+'<--');
+
+		});
+		b4.addEventListener("click", function() {
+		var i = parseInt("string");
+			alert( 'тут будет выпадать окошко диалога для сохранения файла!-->'+i+'<--');
+			
+		});
+	</script>
+	
+</body>
+
+</html>
